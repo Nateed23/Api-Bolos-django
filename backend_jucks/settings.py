@@ -7,19 +7,17 @@ import dj_database_url
 from pathlib import Path
 import os 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# --- CORREÇÃO 1: LEIA A SECRET KEY DO AMBIENTE ---
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-09anv93sifz3)b!3_ue079yar&(njyhc2o8h^9y9h5t5&-_s6(')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 
-# Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -63,7 +61,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend_jucks.wsgi.application'
 
-# Database
 DATABASES = {
     'default': dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
@@ -71,7 +68,6 @@ DATABASES = {
     )
 }
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -79,20 +75,17 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
+# 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# --- CORREÇÃO 2: ADICIONE ASPAS AO AUTH_USER_MODEL ---
 AUTH_USER_MODEL = 'bolos_pedidos.User'
 
 
@@ -102,6 +95,5 @@ CORS_ALLOWED_ORIGINS = [
    
 ]
 
-# --- ADIÇÃO 4: CONFIGURAÇÃO DE MEDIA (PARA AS IMAGENS) ---
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
